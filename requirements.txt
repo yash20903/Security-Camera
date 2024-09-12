@@ -3,13 +3,13 @@ adam==0.0.0.dev0
 asgiref==3.8.1
 asttokens==2.4.0
 astunparse==1.6.3
-awscli==1.34.5
-awsebcli==3.20.10
+
 backcall==0.2.0
 backports.tarfile==1.2.0
 Bashutils==0.0.4
 bidict==0.23.1
 blinker==1.7.0
+
 boto3==1.35.5
 cement==2.8.2
 certifi==2024.6.2
