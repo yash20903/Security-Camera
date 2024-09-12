@@ -6,6 +6,8 @@ import threading
 app = Flask(__name__)
 socketio = SocketIO(app)
 camera = cv2.VideoCapture(0)
+if not camera.isOpened():
+    print("Error: Could not open video source")
 motion_detection = False
 frame_rate = 30
 resolution = (640, 480)
