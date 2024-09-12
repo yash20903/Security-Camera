@@ -3,5 +3,5 @@ services:
     name: security-camera-app
     env: python
     buildCommand: pip install --upgrade pip && pip install -r requirements.txt
-    startCommand: python Sourcecode.py
-    pythonVersion: 3.9  # or any version supported by Render, like 3.8, 3.10, etc.
+    startCommand: gunicorn --worker-class eventlet -w 1 Sourcecode:app --bind 0.0.0.0:5000
+    pythonVersion: 3.9
