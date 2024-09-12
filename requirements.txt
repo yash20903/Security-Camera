@@ -3,6 +3,7 @@ adam==0.0.0.dev0
 asgiref==3.8.1
 asttokens==2.4.0
 astunparse==1.6.3
+gunicorn==20.1.0
 
 backcall==0.2.0
 backports.tarfile==1.2.0
