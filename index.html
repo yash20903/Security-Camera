@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Camera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Live Stream</h1>
+    <img src="{{ url_for('video_feed') }}" width="80%">
+
+    <h2>Settings</h2>
+    <div class="settings">
+        <div>
+            <label for="motion">Motion Detection</label>
+            <input type="checkbox" id="motion" onclick="toggleMotion()">
+        </div>
+        <div>
+            <label for="frame_rate">Frame Rate:</label>
+            <input type="number" id="frame_rate" value="30">
+        </div>
+        <div>
+            <label for="resolution">Resolution:</label>
+            <select id="resolution">
+                <option value="640x480">640x480</option>
+                <option value="1280x720">1280x720</option>
+                <option value="1920x1080">1920x1080</option>
+            </select>
+        </div>
+        <button onclick="applySettings()">Apply Settings</button>
+    </div>
+
+    <script>
+        var socket = io();
+
+        function toggleMotion() {
+            var motionCheckbox = document.getElementById('motion');
+            socket.emit('toggle_motion', { status: motionCheckbox.checked });
+        }
+
+        function applySettings() {
+            var frameRate = document.getElementById('frame_rate').value;
+            var resolution = document.getElementById('resolution').value.split('x');
+            socket.emit('change_settings', {
+                frame_rate: parseInt(frameRate),
+                width: parseInt(resolution[0]),
+                height: parseInt(resolution[1])
+            });
+        }
+    </script>
+</body>
+</html>
